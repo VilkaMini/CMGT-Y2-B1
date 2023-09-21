@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Anchor
   - Projectile
+  - Heaven1Painting
+  - Heaven2Painting
+  - Heaven3Painting
   layers:
   - Default
   - TransparentFX
