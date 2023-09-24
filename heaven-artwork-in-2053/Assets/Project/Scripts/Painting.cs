@@ -5,6 +5,7 @@ using UnityEngine;
 public class Painting : MonoBehaviour
 {
     public GameObject player;
+    public FollowingPlayerDistance godPlatform;
 
     public void EnterPainting()
     {
@@ -20,6 +21,7 @@ public class Painting : MonoBehaviour
         else if (gameObject.tag == "Heaven3Painting")
         {
             player.transform.position = new Vector3(20, player.transform.position.y, 15);
+            godPlatform.isOn = true;
         }
     }
 }
