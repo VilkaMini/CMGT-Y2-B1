@@ -10,6 +10,19 @@ public class FollowingPlayerDistance : MonoBehaviour
 
     public bool isOn = false;
 
+    private void Start()
+    {
+        Actions.OnEnterHeaven += ActivateGodPlatform;
+    }
+
+    void ActivateGodPlatform(int heavenIndex)
+    {
+        if (heavenIndex == 2)
+        {
+            isOn = true;
+        }
+    }
+
     private void Update()
     {
         if (isOn)
