@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
 using UnityEngine.UIElements;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class TraceObjectPath : MonoBehaviour
 {
@@ -26,21 +27,25 @@ public class TraceObjectPath : MonoBehaviour
     {
         if (activeLevel == 0)
         {
-            poseTracking.trackingType = TrackedPoseDriver.TrackingType.RotationOnly;
-            print("Even Before: " + activeWaypoint);
+            MovePlayer();
+        }
+    }
 
-            if (waypoints.Count <= activeWaypoint)
-            {
-                print("Before: " + activeWaypoint);
-                activeLevel = -1;
-                poseTracking.trackingType = TrackedPoseDriver.TrackingType.RotationAndPosition;
-            }
-            else
-            {
-                print("After: " + activeWaypoint);
-                CheckIfAtWaypoint();
-                MoveToActiveWaypoint();
-            }
+    private void MovePlayer()
+    {
+        poseTracking.trackingType = TrackedPoseDriver.TrackingType.RotationOnly;
+        CheckIfAtWaypoint();
+        ResetPlayerposition();
+
+        if (waypoints.Count <= activeWaypoint)
+        {
+            activeLevel = -1;
+            ResetPlayerposition();
+            poseTracking.trackingType = TrackedPoseDriver.TrackingType.RotationAndPosition;
+        }
+        else
+        {
+            MoveToActiveWaypoint();
         }
     }
 
@@ -68,5 +73,10 @@ public class TraceObjectPath : MonoBehaviour
         {
             t.position = player.position;
         }
+    }
+
+    void ResetPlayerposition()
+    {
+        poseTracking.m_CurrentPosition = Vector3.zero;
     }
 }
