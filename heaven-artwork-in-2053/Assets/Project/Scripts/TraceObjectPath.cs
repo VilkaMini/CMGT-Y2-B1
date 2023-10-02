@@ -8,7 +8,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class TraceObjectPath : MonoBehaviour
 {
-    public List<Transform> waypoints;
+    public List<List<Transform>> waypoints;
     public List<Transform> resetObjects;
     public int activeLevel = -1;
     public int activeWaypoint = 0;
@@ -24,12 +24,11 @@ public class TraceObjectPath : MonoBehaviour
     private void Start()
     {
         Actions.OnEnterHeaven += HandleLevelChange;
-        //Actions.OnEnterHeaven += ResetChildrenPosition;
     }
 
     public void Update()
     {
-        if (activeLevel == 0)
+        if (activeLevel != -1)
         {
             MovePlayer();
         }
@@ -45,7 +44,7 @@ public class TraceObjectPath : MonoBehaviour
         poseTracking.trackingType = TrackedPoseDriver.TrackingType.RotationOnly;
         CheckIfAtWaypoint();
 
-        if (waypoints.Count <= activeWaypoint)
+        if (waypoints[activeLevel].Count <= activeWaypoint)
         {
             activeLevel = -1;
             poseTracking.trackingType = TrackedPoseDriver.TrackingType.RotationAndPosition;
@@ -60,12 +59,12 @@ public class TraceObjectPath : MonoBehaviour
 
     private void MoveToActiveWaypoint()
     {
-        player.transform.position = Vector3.MoveTowards(player.transform.position, waypoints[activeWaypoint].position, speedToMove);
+        player.transform.position = Vector3.MoveTowards(player.transform.position, waypoints[activeLevel][activeWaypoint].position, speedToMove);
     }
 
     private void CheckIfAtWaypoint()
     {
-        if (player.position == waypoints[activeWaypoint].position)
+        if (player.position == waypoints[activeLevel][activeWaypoint].position)
         {
             activeWaypoint++;
         }
@@ -74,14 +73,6 @@ public class TraceObjectPath : MonoBehaviour
     void HandleLevelChange(int levelId)
     {
         activeLevel = levelId;
-    }
-
-    void ResetChildrenPosition(int i)
-    {
-        foreach (Transform t in resetObjects) 
-        {
-            t.position = player.position;
-        }
     }
 
     void ResetPlayerposition()
