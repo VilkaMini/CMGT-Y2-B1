@@ -4996,8 +4996,9 @@ MonoBehaviour:
   activeLevel: -1
   activeWaypoint: 0
   poseTracking: {fileID: 259343043}
-  rightHand: {fileID: 524968424}
-  lefthand: {fileID: 261669030}
+  mainCamera: {fileID: 259343041}
+  rightHand: {fileID: 524968418}
+  leftHand: {fileID: 261669024}
   speedToMove: 0.01
   player: {fileID: 1435587693}
 --- !u!1001 &1469516835

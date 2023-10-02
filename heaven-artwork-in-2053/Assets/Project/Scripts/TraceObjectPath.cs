@@ -14,13 +14,17 @@ public class TraceObjectPath : MonoBehaviour
     public int activeWaypoint = 0;
     public TrackedPoseDriver poseTracking;
 
+    public GameObject mainCamera;
+    public GameObject rightHand;
+    public GameObject leftHand;
+
     public float speedToMove = 0.001f;
     public Transform player;
 
     private void Start()
     {
         Actions.OnEnterHeaven += HandleLevelChange;
-        Actions.OnEnterHeaven += ResetChildrenPosition;
+        //Actions.OnEnterHeaven += ResetChildrenPosition;
     }
 
     public void Update()
@@ -33,15 +37,20 @@ public class TraceObjectPath : MonoBehaviour
 
     private void MovePlayer()
     {
+        ResetPlayerposition();
+
+        rightHand.SetActive(false);
+        leftHand.SetActive(false);
+
         poseTracking.trackingType = TrackedPoseDriver.TrackingType.RotationOnly;
         CheckIfAtWaypoint();
-        ResetPlayerposition();
 
         if (waypoints.Count <= activeWaypoint)
         {
             activeLevel = -1;
-            ResetPlayerposition();
             poseTracking.trackingType = TrackedPoseDriver.TrackingType.RotationAndPosition;
+            rightHand.SetActive(true);
+            leftHand.SetActive(true);
         }
         else
         {
@@ -77,6 +86,6 @@ public class TraceObjectPath : MonoBehaviour
 
     void ResetPlayerposition()
     {
-        poseTracking.m_CurrentPosition = Vector3.zero;
+        mainCamera.transform.localPosition = Vector3.zero;
     }
 }
