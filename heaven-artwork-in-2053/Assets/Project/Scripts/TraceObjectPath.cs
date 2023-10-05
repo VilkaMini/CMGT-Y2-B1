@@ -49,20 +49,16 @@ public class TraceObjectPath : MonoBehaviour
 
     private void MovePlayer()
     {
-        ResetPlayerposition();
-
-        rightHand.SetActive(false);
-        leftHand.SetActive(false);
-
-        poseTracking.trackingType = TrackedPoseDriver.TrackingType.RotationOnly;
         CheckIfAtWaypoint();
 
         if (waypoints[activeLevel].Count <= activeWaypoint)
         {
+            if (activeLevel == 0)
+            {
+                Actions.OpenGates();
+                StartCoroutine(WaitForGates());
+            }
             activeLevel = -1;
-            poseTracking.trackingType = TrackedPoseDriver.TrackingType.RotationAndPosition;
-            rightHand.SetActive(true);
-            leftHand.SetActive(true);
         }
         else
         {
@@ -73,8 +69,6 @@ public class TraceObjectPath : MonoBehaviour
     private void MoveToActiveWaypoint()
     {
         player.transform.position = Vector3.MoveTowards(player.transform.position, waypoints[activeLevel][activeWaypoint].position, speedToMove);
-        print("Waypoint" + activeWaypoint);
-        print("Level" + activeLevel);
     }
 
     private void CheckIfAtWaypoint()
@@ -92,6 +86,15 @@ public class TraceObjectPath : MonoBehaviour
 
     void ResetPlayerposition()
     {
+        poseTracking.m_CurrentPosition = Vector3.zero;
         mainCamera.transform.localPosition = Vector3.zero;
+    }
+
+    IEnumerator WaitForGates()
+    {
+        yield return new WaitForSeconds(3);
+        player.transform.position = new Vector3(23.751f, 125.22f, 4.920f);
+        rightHand.SetActive(true);
+        leftHand.SetActive(true);
     }
 }

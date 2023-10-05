@@ -6,4 +6,5 @@ using UnityEngine;
 public static class Actions
 {
     public static Action<int> OnEnterHeaven;
+    public static Action OpenGates;
 }
