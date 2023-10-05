@@ -18,7 +18,7 @@ public class Painting : MonoBehaviour
         else if (gameObject.tag == "Heaven2Painting")
         {
             player.transform.position = spawnPoints[1].transform.position;
-            Actions.OnEnterHeaven(0);
+            Actions.OnEnterHeaven(1);
         }
         else if (gameObject.tag == "Heaven3Painting")
         {

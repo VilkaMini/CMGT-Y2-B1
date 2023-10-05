@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
@@ -9,6 +10,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class TraceObjectPath : MonoBehaviour
 {
     public List<List<Transform>> waypoints;
+    public List<GameObject> waypointParents;
     public List<Transform> resetObjects;
     public int activeLevel = -1;
     public int activeWaypoint = 0;
@@ -23,6 +25,17 @@ public class TraceObjectPath : MonoBehaviour
 
     private void Start()
     {
+        waypoints = new List<List<Transform>>();
+        int waypointCounter = 0;
+        foreach (GameObject waypointParent in waypointParents)
+        {
+            waypoints.Add(new List<Transform>());
+            foreach (Transform waypoint in waypointParent.GetComponentInChildren<Transform>()) 
+            {
+                waypoints[waypointCounter].Add(waypoint);
+            }
+            waypointCounter++;
+        }
         Actions.OnEnterHeaven += HandleLevelChange;
     }
 
@@ -60,6 +73,8 @@ public class TraceObjectPath : MonoBehaviour
     private void MoveToActiveWaypoint()
     {
         player.transform.position = Vector3.MoveTowards(player.transform.position, waypoints[activeLevel][activeWaypoint].position, speedToMove);
+        print("Waypoint" + activeWaypoint);
+        print("Level" + activeLevel);
     }
 
     private void CheckIfAtWaypoint()
