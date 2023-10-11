@@ -84,17 +84,9 @@ public class TraceObjectPath : MonoBehaviour
         activeLevel = levelId;
     }
 
-    void ResetPlayerposition()
-    {
-        poseTracking.m_CurrentPosition = Vector3.zero;
-        mainCamera.transform.localPosition = Vector3.zero;
-    }
-
     IEnumerator WaitForGates()
     {
         yield return new WaitForSeconds(3);
         player.transform.position = new Vector3(23.751f, 125.22f, 4.920f);
-        rightHand.SetActive(true);
-        leftHand.SetActive(true);
     }
 }
