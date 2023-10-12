@@ -447,6 +447,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1575006160}
     m_Modifications:
+    - target: {fileID: 655281744587433739, guid: a45fb358106162845be472a1b4baff9c, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1332744622266447767, guid: a45fb358106162845be472a1b4baff9c, type: 3}
+      propertyPath: m_Colliders.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1332744622266447767, guid: a45fb358106162845be472a1b4baff9c, type: 3}
+      propertyPath: m_Colliders.Array.data[0]
+      value: 
+      objectReference: {fileID: 1904016546}
     - target: {fileID: 3808364115398471394, guid: a45fb358106162845be472a1b4baff9c, type: 3}
       propertyPath: player
       value: 
@@ -5595,7 +5607,7 @@ MonoBehaviour:
   - {fileID: 524968419}
   activeLevel: -1
   activeWaypoint: 0
-  poseTracking: {fileID: 259343043}
+  locomotionEnabler: {fileID: 1168641636}
   mainCamera: {fileID: 259343041}
   rightHand: {fileID: 524968418}
   leftHand: {fileID: 261669024}
@@ -6433,6 +6445,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9158263590467961005, guid: a45fb358106162845be472a1b4baff9c, type: 3}
   m_PrefabInstance: {fileID: 1912656720}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &1579321781 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 655281744587433739, guid: a45fb358106162845be472a1b4baff9c, type: 3}
+  m_PrefabInstance: {fileID: 1912656720}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1615491533
 GameObject:
   m_ObjectHideFlags: 0
@@ -7032,6 +7049,11 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &1904016546 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 655281744587433739, guid: a45fb358106162845be472a1b4baff9c, type: 3}
+  m_PrefabInstance: {fileID: 181343271}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1912656720
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7040,6 +7062,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1575006160}
     m_Modifications:
+    - target: {fileID: 655281744587433739, guid: a45fb358106162845be472a1b4baff9c, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1332744622266447767, guid: a45fb358106162845be472a1b4baff9c, type: 3}
+      propertyPath: m_Colliders.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1332744622266447767, guid: a45fb358106162845be472a1b4baff9c, type: 3}
+      propertyPath: m_Colliders.Array.data[0]
+      value: 
+      objectReference: {fileID: 1579321781}
     - target: {fileID: 3808364115398471394, guid: a45fb358106162845be472a1b4baff9c, type: 3}
       propertyPath: player
       value: 

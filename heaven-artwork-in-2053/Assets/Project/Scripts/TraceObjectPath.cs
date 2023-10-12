@@ -14,7 +14,7 @@ public class TraceObjectPath : MonoBehaviour
     public List<Transform> resetObjects;
     public int activeLevel = -1;
     public int activeWaypoint = 0;
-    public TrackedPoseDriver poseTracking;
+    public GameObject locomotionEnabler;
 
     public GameObject mainCamera;
     public GameObject rightHand;
@@ -43,6 +43,7 @@ public class TraceObjectPath : MonoBehaviour
     {
         if (activeLevel != -1)
         {
+            locomotionEnabler.SetActive(false);
             MovePlayer();
         }
     }
@@ -88,5 +89,6 @@ public class TraceObjectPath : MonoBehaviour
     {
         yield return new WaitForSeconds(3);
         player.transform.position = new Vector3(23.751f, 125.22f, 4.920f);
+        locomotionEnabler.SetActive(true);
     }
 }
