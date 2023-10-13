@@ -1,30 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem.XR;
-using UnityEngine.UIElements;
-using UnityEngine.XR.Interaction.Toolkit;
 
 public class TraceObjectPath : MonoBehaviour
 {
+    // Define variables
     public List<List<Transform>> waypoints;
     public List<GameObject> waypointParents;
-    public List<Transform> resetObjects;
     public int activeLevel = -1;
     public int activeWaypoint = 0;
     public GameObject locomotionEnabler;
-
-    public GameObject mainCamera;
-    public GameObject rightHand;
-    public GameObject leftHand;
 
     public float speedToMove = 0.001f;
     public Transform player;
 
     private void Start()
     {
+        // Initiate all the waypoints
         waypoints = new List<List<Transform>>();
         int waypointCounter = 0;
         foreach (GameObject waypointParent in waypointParents)
@@ -36,13 +28,17 @@ public class TraceObjectPath : MonoBehaviour
             }
             waypointCounter++;
         }
+
+        // Add level change handle action
         Actions.OnEnterHeaven += HandleLevelChange;
     }
 
     public void Update()
     {
-        if (activeLevel != -1)
+        // Check if player is in the level
+        if (activeLevel != -1 && activeLevel != 2)
         {
+            // Disable joystick movement and startmoving player automatically
             locomotionEnabler.SetActive(false);
             MovePlayer();
         }
@@ -50,8 +46,10 @@ public class TraceObjectPath : MonoBehaviour
 
     private void MovePlayer()
     {
+        // Check if at waypoint location
         CheckIfAtWaypoint();
-
+        
+        // If at last check point, start teleporting back sequence
         if (waypoints[activeLevel].Count <= activeWaypoint)
         {
             if (activeLevel == 0)
@@ -61,17 +59,20 @@ public class TraceObjectPath : MonoBehaviour
             }
             activeLevel = -1;
         }
+        // If not last checkpoint, move player to active
         else
         {
             MoveToActiveWaypoint();
         }
     }
 
+    // Move the player to active waypoint
     private void MoveToActiveWaypoint()
     {
         player.transform.position = Vector3.MoveTowards(player.transform.position, waypoints[activeLevel][activeWaypoint].position, speedToMove);
     }
 
+    // Check if at waypoint location
     private void CheckIfAtWaypoint()
     {
         if (player.position == waypoints[activeLevel][activeWaypoint].position)
@@ -80,11 +81,13 @@ public class TraceObjectPath : MonoBehaviour
         }
     }
 
+    // Level changer, controls if the tracing is needed
     void HandleLevelChange(int levelId)
     {
         activeLevel = levelId;
     }
 
+    // End of heaven1 coroutine to let the animation happend and then teleporting player back to museum
     IEnumerator WaitForGates()
     {
         yield return new WaitForSeconds(3);
