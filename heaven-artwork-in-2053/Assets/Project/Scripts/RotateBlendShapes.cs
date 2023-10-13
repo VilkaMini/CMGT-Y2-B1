@@ -1,8 +1,8 @@
 using UnityEngine;
-using System.Collections;
 
 public class RotateBlendShapes : MonoBehaviour
 {
+    // Define variables
     SkinnedMeshRenderer skinnedMeshRenderer;
     Mesh skinnedMesh;
     int blendShapeCount;
@@ -12,13 +12,16 @@ public class RotateBlendShapes : MonoBehaviour
 
     void Start()
     {
+        // Gets skinnedmeshrendered component to get the blend shapes
         skinnedMeshRenderer = GetComponent<SkinnedMeshRenderer>();
         skinnedMesh = skinnedMeshRenderer.sharedMesh;
         blendShapeCount = skinnedMesh.blendShapeCount;
 
+        // Repeat the rotation of blendshapes for continuous animation
         InvokeRepeating("AnimationControl", 0, 0.02f);
     }
 
+    // Animate the blendshapes object
     void AnimationControl()
     {
         // Sets last blendShape index to zero
@@ -35,7 +38,6 @@ public class RotateBlendShapes : MonoBehaviour
 
         // Set current blendShape to 100
         skinnedMeshRenderer.SetBlendShapeWeight(playIndex, 100f);
-
         playIndex++;
 
         if (playIndex > blendShapeCount - 1)
