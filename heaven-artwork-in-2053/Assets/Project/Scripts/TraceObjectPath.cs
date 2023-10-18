@@ -36,7 +36,7 @@ public class TraceObjectPath : MonoBehaviour
     public void Update()
     {
         // Check if player is in the level
-        if (activeLevel != -1 && activeLevel != 2)
+        if (activeLevel == 0)
         {
             // Disable joystick movement and startmoving player automatically
             locomotionEnabler.SetActive(false);
