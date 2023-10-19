@@ -9,6 +9,7 @@ TagManager:
   - Heaven1Painting
   - Heaven2Painting
   - Heaven3Painting
+  - Eye
   layers:
   - Default
   - TransparentFX
