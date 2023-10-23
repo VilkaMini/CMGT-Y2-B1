@@ -28,6 +28,7 @@ public class AngelTransformController : MonoBehaviour
         {
             hasTouched = true;
             buildingToBreak.Break();
+            Destroy(gameObject);
         }
     }
 }
