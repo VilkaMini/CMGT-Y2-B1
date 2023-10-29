@@ -44,7 +44,7 @@ public class ObjectChargingPlayer : MonoBehaviour
         }
     }
 
-    private void DeleteObject()
+    private void DeleteObject(int gateID)
     {
         Destroy(this);
     }

@@ -54,7 +54,7 @@ public class TraceObjectPath : MonoBehaviour
         {
             if (activeLevel == 0)
             {
-                Actions.OpenGates();
+                Actions.OpenGates(0);
                 StartCoroutine(WaitForGates());
             }
             activeLevel = -1;

@@ -1,19 +1,19 @@
-using System.Collections;
-using UnityEditor.ShaderGraph.Drawing.Inspector.PropertyDrawers;
 using UnityEngine;
 
 public class GatesInteraction : MonoBehaviour
 {
-    public Animator gateAnimator;
-    public AudioSource gateAudioSource;
+    public Animator gateAnimator1;
+    public AudioSource gateAudioSource1;
     public GameObject player;
 
     private bool soundPlayed = false;
 
-
-    private void Start()
+    private void OnTriggerEnter(Collider other)
     {
-        Actions.OpenGates += OpenGate;    
+        if (other.gameObject.tag == "Player")
+        {
+            OpenGate();
+        }
     }
 
     public void OpenGate()
@@ -21,10 +21,10 @@ public class GatesInteraction : MonoBehaviour
         // Play gate animation and sound if not played yet
         if (!soundPlayed)
         {
-            gateAudioSource.Play();
+            gateAudioSource1.Play();
             soundPlayed = true;
         }
 
-        gateAnimator.SetTrigger("OpenGate");
+        gateAnimator1.SetTrigger("OpenGate");
     }
 }

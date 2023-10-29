@@ -9,7 +9,7 @@ public static class Actions
     public static Action<int> OnEnterHeaven;
 
     // Open the gates on level 1
-    public static Action OpenGates;
+    public static Action<int> OpenGates;
 
     // Turn the light on in the museum
     public static Action<int> TurnLightOn;
