@@ -5,6 +5,8 @@ using UnityEngine;
 public class AngelTransformController : MonoBehaviour
 {
     public ObjectToObjectFollow objectFollowControler = null;
+    public AudioSource manScreamingAudio;
+    public AudioSource babyCryingAudio;
 
     public FractureBuilding buildingToBreak = null;
     private bool hasTouched = false;
@@ -28,6 +30,8 @@ public class AngelTransformController : MonoBehaviour
         {
             hasTouched = true;
             buildingToBreak.Break();
+            manScreamingAudio.Play();
+            babyCryingAudio.Play();
             Destroy(gameObject);
         }
     }

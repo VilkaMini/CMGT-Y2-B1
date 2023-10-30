@@ -1,10 +1,13 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 public class GatesInteraction : MonoBehaviour
 {
     public Animator gateAnimator1;
     public AudioSource gateAudioSource1;
     public GameObject player;
+    public GameObject playerOrigin;
     public bool CheckForObject;
     public Transform objectToCheck;
 
@@ -22,6 +25,7 @@ public class GatesInteraction : MonoBehaviour
         if (other.gameObject.tag == "Trackable")
         {
             CheckForObject = false;
+            StartCoroutine(WaitForGates());
         }
     }
 
@@ -36,4 +40,12 @@ public class GatesInteraction : MonoBehaviour
 
         gateAnimator1.SetTrigger("OpenGate");
     }
+
+    IEnumerator WaitForGates()
+    {
+        OpenGate();
+        yield return new WaitForSeconds(5);
+        playerOrigin.transform.position = new Vector3(23.751f, 125.22f, 4.920f);
+    }
+        
 }
