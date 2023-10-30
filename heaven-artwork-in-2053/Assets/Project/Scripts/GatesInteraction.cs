@@ -5,6 +5,8 @@ public class GatesInteraction : MonoBehaviour
     public Animator gateAnimator1;
     public AudioSource gateAudioSource1;
     public GameObject player;
+    public bool CheckForObject;
+    public Transform objectToCheck;
 
     private bool soundPlayed = false;
 
@@ -12,7 +14,14 @@ public class GatesInteraction : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            OpenGate();
+            if (!CheckForObject)
+            {
+                OpenGate();
+            }
+        }
+        if (other.gameObject.tag == "Trackable")
+        {
+            CheckForObject = false;
         }
     }
 

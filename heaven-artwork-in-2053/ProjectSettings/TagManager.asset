@@ -10,6 +10,7 @@ TagManager:
   - Heaven2Painting
   - Heaven3Painting
   - Eye
+  - Trackable
   layers:
   - Default
   - TransparentFX

@@ -9114,7 +9114,7 @@ GameObject:
   - component: {fileID: 274254586}
   m_Layer: 0
   m_Name: Chain
-  m_TagString: Untagged
+  m_TagString: Trackable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9128,13 +9128,13 @@ Transform:
   m_GameObject: {fileID: 274254582}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.47830832, z: -0, w: 0.878192}
-  m_LocalPosition: {x: 80.394, y: 3.558, z: 9.079}
+  m_LocalPosition: {x: -1.0060043, y: -5.442, z: -13.421}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1331104284}
   - {fileID: 1489493352}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 305510556}
   m_LocalEulerAnglesHint: {x: 0, y: 57.15, z: 0}
 --- !u!65 &274254584
 BoxCollider:
@@ -9974,6 +9974,7 @@ Transform:
   - {fileID: 448439381}
   - {fileID: 283655481}
   - {fileID: 1852541928}
+  - {fileID: 274254583}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &324064157
@@ -10849,6 +10850,14 @@ PrefabInstance:
       propertyPath: gateAnimator2
       value: 
       objectReference: {fileID: 434142064}
+    - target: {fileID: 8907519738370358791, guid: bb62d6f589ea18d4d81f3a984759722b, type: 3}
+      propertyPath: objectToCheck
+      value: 
+      objectReference: {fileID: 274254583}
+    - target: {fileID: 8907519738370358791, guid: bb62d6f589ea18d4d81f3a984759722b, type: 3}
+      propertyPath: CheckForObject
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8907519738370358791, guid: bb62d6f589ea18d4d81f3a984759722b, type: 3}
       propertyPath: gateAudioSource
       value: 
@@ -31988,5 +31997,4 @@ SceneRoots:
   - {fileID: 305510556}
   - {fileID: 730493872}
   - {fileID: 2088389308}
-  - {fileID: 274254583}
   - {fileID: 1855974940}
