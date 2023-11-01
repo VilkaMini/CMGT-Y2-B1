@@ -8,7 +8,8 @@ public class RotateBlendShapes : MonoBehaviour
     int blendShapeCount;
 
     int playIndex = 0;
-    public float animationSpeed = 1.0f;
+    public float animationSpeed = 0.02f;
+    public bool playedOnce = false;
 
     void Start()
     {
@@ -16,8 +17,17 @@ public class RotateBlendShapes : MonoBehaviour
         skinnedMeshRenderer = GetComponent<SkinnedMeshRenderer>();
         skinnedMesh = skinnedMeshRenderer.sharedMesh;
         blendShapeCount = skinnedMesh.blendShapeCount;
+        playIndex = blendShapeCount - 1;
 
         // Repeat the rotation of blendshapes for continuous animation
+        if (!playedOnce)
+        {
+            InvokeRepeating("AnimationControl", 0, animationSpeed);
+        }
+    }
+
+    public void InvokeOnCommand()
+    {
         InvokeRepeating("AnimationControl", 0, 0.02f);
     }
 
@@ -25,24 +35,28 @@ public class RotateBlendShapes : MonoBehaviour
     void AnimationControl()
     {
         // Sets last blendShape index to zero
-        if (playIndex > 0)
+        if (playIndex < blendShapeCount-1)
         {
-            skinnedMeshRenderer.SetBlendShapeWeight(playIndex - 1, 0f);
+            skinnedMeshRenderer.SetBlendShapeWeight(playIndex + 1, 0f);
         }
 
         // If last index was the last blendShape, set it to 0 to repeat animation
-        if (playIndex == 0)
+        if (playIndex == blendShapeCount-1)
         {
-            skinnedMeshRenderer.SetBlendShapeWeight(blendShapeCount - 1, 0f);
+            skinnedMeshRenderer.SetBlendShapeWeight(0, 0f);
         }
 
         // Set current blendShape to 100
         skinnedMeshRenderer.SetBlendShapeWeight(playIndex, 100f);
-        playIndex++;
+        playIndex--;
 
-        if (playIndex > blendShapeCount - 1)
+        if (playIndex < 0)
         {
-            playIndex = 0;
+            playIndex = blendShapeCount-1;
+            if (playedOnce)
+            {
+                CancelInvoke();
+            }
         }
     }
 }

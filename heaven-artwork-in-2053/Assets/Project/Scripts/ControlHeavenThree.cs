@@ -6,6 +6,8 @@ public class ControlHeavenThree : MonoBehaviour
 {
     public Transform player;
     public GameObject locomotionController;
+    public RotateBlendShapes godAnimation;
+    public AudioSource godAudio;
 
     private void Start()
     {
@@ -17,13 +19,16 @@ public class ControlHeavenThree : MonoBehaviour
         if (heavenID == 2) 
         {
             locomotionController.SetActive(false);
-            //StartCoroutine(HeavenSequence());
+            StartCoroutine(HeavenSequence());
         }
     }
 
 
     IEnumerator HeavenSequence()
     {
+        godAudio.Play();
+        yield return new WaitForSeconds(5);
+        godAnimation.InvokeOnCommand();
         yield return new WaitForSeconds(15);
         player.transform.position = new Vector3(23.751f, 125.22f, 4.920f);
         locomotionController.SetActive(true);
