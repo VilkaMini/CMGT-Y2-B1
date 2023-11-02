@@ -47,14 +47,17 @@ public class TraceObjectPath : MonoBehaviour
     private void MovePlayer()
     {
         // Check if at waypoint location
-        CheckIfAtWaypoint();
-        
+        if (activeWaypoint < waypoints[activeLevel].Count-1)
+        {
+            CheckIfAtWaypoint();
+        }
+
         // If at last check point, start teleporting back sequence
-        if (waypoints[activeLevel].Count <= activeWaypoint)
+        print(activeWaypoint);
+        if (waypoints[activeLevel].Count-1 == activeWaypoint)
         {
             if (activeLevel == 0)
             {
-                Actions.OpenGates(0);
                 StartCoroutine(WaitForGates());
             }
             activeLevel = -1;
@@ -90,7 +93,7 @@ public class TraceObjectPath : MonoBehaviour
     // End of heaven1 coroutine to let the animation happend and then teleporting player back to museum
     IEnumerator WaitForGates()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
         player.transform.position = new Vector3(23.751f, 125.22f, 4.920f);
         locomotionEnabler.SetActive(true);
     }
