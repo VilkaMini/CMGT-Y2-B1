@@ -53,7 +53,6 @@ public class TraceObjectPath : MonoBehaviour
         }
 
         // If at last check point, start teleporting back sequence
-        print(activeWaypoint);
         if (waypoints[activeLevel].Count-1 == activeWaypoint)
         {
             if (activeLevel == 0)

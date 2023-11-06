@@ -44,6 +44,10 @@ public class GatesInteraction : MonoBehaviour
     IEnumerator WaitForGates()
     {
         OpenGate();
+        if (CheckForObject)
+        {
+            Destroy(objectToCheck.gameObject);
+        }
         yield return new WaitForSeconds(5);
         playerOrigin.transform.position = new Vector3(23.751f, 125.22f, 4.920f);
         Actions.OnEnterHeaven(-1);

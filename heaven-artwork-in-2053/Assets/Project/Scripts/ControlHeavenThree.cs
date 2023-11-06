@@ -31,6 +31,7 @@ public class ControlHeavenThree : MonoBehaviour
         godAnimation.InvokeOnCommand();
         yield return new WaitForSeconds(15);
         player.transform.position = new Vector3(23.751f, 125.22f, 4.920f);
+        godAudio.Stop();
         locomotionController.SetActive(true);
     }
 }
