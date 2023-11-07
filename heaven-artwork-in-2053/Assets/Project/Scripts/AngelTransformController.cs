@@ -7,6 +7,7 @@ public class AngelTransformController : MonoBehaviour
     public ObjectToObjectFollow objectFollowControler = null;
     public AudioSource manScreamingAudio;
     public AudioSource babyCryingAudio;
+    public ParticleSystem bloodPart;
 
     public FractureBuilding buildingToBreak = null;
     private bool hasTouched = false;
@@ -28,11 +29,18 @@ public class AngelTransformController : MonoBehaviour
     {
         if (!hasTouched)
         {
+            bloodPart.Play();
             hasTouched = true;
             buildingToBreak.Break();
             manScreamingAudio.Play();
             babyCryingAudio.Play();
-            Destroy(gameObject);
+            StartCoroutine(DeleteAfterTime(2));
         }
+    }
+
+    IEnumerator DeleteAfterTime(int seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        Destroy(gameObject);
     }
 }
